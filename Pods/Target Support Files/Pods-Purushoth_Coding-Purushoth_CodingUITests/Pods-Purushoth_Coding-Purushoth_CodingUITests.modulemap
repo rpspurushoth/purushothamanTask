@@ -1,0 +1,6 @@
+framework module Pods_Purushoth_Coding_Purushoth_CodingUITests {
+  umbrella header "Pods-Purushoth_Coding-Purushoth_CodingUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
