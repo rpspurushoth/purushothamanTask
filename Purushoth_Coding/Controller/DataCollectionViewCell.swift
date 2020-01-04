@@ -56,10 +56,8 @@ class DataCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func handleConstraints() {
-
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(verticalStackView)
-
         verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true

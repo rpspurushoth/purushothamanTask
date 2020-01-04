@@ -28,7 +28,6 @@ class Purushoth_CodingTests: XCTestCase {
     }
     
     func testSUT_CanInstantiateViewController() {
-        
         XCTAssertNotNil(systemUnderTest)
     }
     
@@ -40,17 +39,24 @@ class Purushoth_CodingTests: XCTestCase {
         }
     }
     
+    func testSUI_APIIsNetworkCONNECTED() {
+           XCTAssertTrue(NetworkConnectivity.networkConnectionAvailable)
+    }
+    
     func testSUI_APIIsNetworkDISCONNECTED() {
-        XCTAssertTrue(NetworkConnectivity.networkConnectionAvailable)
         XCTAssertFalse(NetworkConnectivity.networkConnectionAvailable)
     }
     
-    func testSUT_CollectionViewIsNotNilAfterViewDidLoad() {
-        XCTAssertNotNil(systemUnderTest.rowsData)
+    func testSUI_ResponseEmptyArray() {
+        XCTAssertTrue(systemUnderTest.rowsData.count == 0)
     }
     
-    func testSUT_CollectionViewIsNilAfterViewDidLoad() {
-        XCTAssertNil(systemUnderTest.rowsData)
+     func testSUI_ResponseNonEmptyArray() {
+           XCTAssertTrue(systemUnderTest.rowsData.count > 0)
+       }
+    
+    func testSUT_CollectionViewIsNotNilAfterViewDidLoad() {
+        XCTAssertNotNil(systemUnderTest.rowsData)
     }
     
     func testSUT_HasItemsForCollectionView() {
@@ -67,9 +73,13 @@ class Purushoth_CodingTests: XCTestCase {
         XCTAssertTrue(systemUnderTest.responds(to: #selector(systemUnderTest.collectionView(_:cellForItemAt:))))
     }
     
+    
+    func testSUT_ShouldSetNilCollectionViewDelegate() {
+        XCTAssertNil(systemUnderTest.canadaCollectionView.delegate)
+    }
+    
     func testSUT_ShouldSetCollectionViewDelegate() {
         XCTAssertNotNil(systemUnderTest.canadaCollectionView.delegate)
-        XCTAssertNil(systemUnderTest.canadaCollectionView.delegate)
     }
     
     func testSUT_ConformsToCollectionViewDelegate() {

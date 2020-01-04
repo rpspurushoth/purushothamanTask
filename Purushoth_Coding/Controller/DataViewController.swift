@@ -47,8 +47,7 @@ class DataViewController: UIViewController {
     
     func calculateHeight(inString: String,
                          fontSize: UIFont,
-                         width: CGFloat) -> CGFloat
-    {
+                         width: CGFloat) -> CGFloat {
         let messageString = inString
     
         let attributes : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : fontSize]
