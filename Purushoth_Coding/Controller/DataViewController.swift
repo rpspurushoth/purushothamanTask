@@ -40,7 +40,8 @@ class DataViewController: UIViewController {
         canadaCollectionView.register(DataCollectionViewCell.self,
                                       forCellWithReuseIdentifier: "DataCollectionViewCell")
         canadaCollectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshUpdateData(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshUpdateData(_:)),
+                                 for: .valueChanged)
         webServiceCall()
     }
     
@@ -51,8 +52,11 @@ class DataViewController: UIViewController {
         let messageString = inString
     
         let attributes : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : fontSize]
-        let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
-        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        let attributedString : NSAttributedString = NSAttributedString(string: messageString,
+                                                                       attributes: attributes)
+        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: width,
+                                                                       height: CGFloat.greatestFiniteMagnitude),
+                                                                        options: .usesLineFragmentOrigin, context: nil)
         let requredSize:CGRect = rect
         return requredSize.height
     }
@@ -109,6 +113,10 @@ extension DataViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
         let model: DataModel = rowsData[indexPath.row]
+
+        cell.aboutDescriptionLabel.isHidden = (model.descriptions == "") ? true : false
+        cell.aboutTitleLabel.isHidden = (model.title == "") ? true : false
+        
         cell.aboutTitleLabel.text = model.title
         cell.aboutDescriptionLabel.text = model.descriptions
         
