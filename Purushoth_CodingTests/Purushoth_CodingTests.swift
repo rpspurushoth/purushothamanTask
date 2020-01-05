@@ -5,7 +5,6 @@
 //  Created by AEL5625 on 19/12/19.
 //  Copyright © 2019 AEL5106. All rights reserved.
 //
-
 import XCTest
 @testable import Purushoth_Coding
 
@@ -14,7 +13,7 @@ class Purushoth_CodingTests: XCTestCase {
     var window: UIWindow?
     var navController: UINavigationController?
     var systemUnderTest: DataViewController!
-    
+    var apiCall: APIService!
     override func setUp() {
         super.setUp()
         let viewController: DataViewController = DataViewController()
@@ -23,7 +22,6 @@ class Purushoth_CodingTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -91,5 +89,25 @@ class Purushoth_CodingTests: XCTestCase {
         XCTAssert(systemUnderTest.responds(to: #selector(systemUnderTest.collectionView(_:layout:sizeForItemAt:))))
         XCTAssertTrue(systemUnderTest.responds(to: #selector(systemUnderTest.collectionView(_:layout:minimumLineSpacingForSectionAt:))))
         XCTAssertTrue(systemUnderTest.responds(to: #selector(systemUnderTest.collectionView(_:layout:minimumInteritemSpacingForSectionAt:))))
+    }
+    
+   func testAPIFailCase()
+   {
+        apiCall = APIService()
+        apiCall.apiCallFromServer(urlString: "") {(response,
+                                                    message,
+                                                    success) in
+            XCTAssertTrue(response == nil)
+        }
+    }
+    
+    func testAPIPassCase()
+    {
+        apiCall = APIService()
+        apiCall.apiCallFromServer(urlString: "") {(response,
+            message,
+            success) in
+            XCTAssertTrue(response != nil)
+        }
     }
 }
